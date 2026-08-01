@@ -228,6 +228,7 @@ class SymmetricMemoryTest(MultiProcContinuousTest):
         not PLATFORM_SUPPORTS_SYMM_MEM, "SymmMem is not supported on this ROCm arch"
     )
     @skip_if_lt_x_gpu(2)
+    @skip_if_rocm_ver_atleast_multiprocess([7, 14])
     def test_get_signal_pad(self) -> None:
         self._init_process()
 
@@ -292,6 +293,7 @@ class SymmetricMemoryTest(MultiProcContinuousTest):
         not PLATFORM_SUPPORTS_SYMM_MEM, "SymmMem is not supported on this ROCm arch"
     )
     @skip_if_lt_x_gpu(2)
+    @skip_if_rocm_ver_atleast_multiprocess([7, 14])
     def test_rendezvous_via_pg_allgather(self) -> None:
         import pickle
 
@@ -339,6 +341,7 @@ class SymmetricMemoryTest(MultiProcContinuousTest):
         not PLATFORM_SUPPORTS_SYMM_MEM, "SymmMem is not supported on this ROCm arch"
     )
     @skip_if_lt_x_gpu(2)
+    @skip_if_rocm_ver_atleast_multiprocess([7, 14])
     def test_rendezvous_custom_backend(self) -> None:
         # Simulate the ncclx multi-backend setup.  NCCLXStub wraps NCCL
         # (CUDA-only, like ncclx) and registers via extended_api=True.
@@ -403,6 +406,7 @@ class SymmetricMemoryTest(MultiProcContinuousTest):
         not PLATFORM_SUPPORTS_SYMM_MEM, "SymmMem is not supported on this ROCm arch"
     )
     @skip_if_lt_x_gpu(2)
+    @skip_if_rocm_ver_atleast_multiprocess([7, 14])
     def test_pg_rendezvous_abort_after(self) -> None:
         self._init_process()
 
@@ -551,6 +555,7 @@ class SymmetricMemoryTest(MultiProcContinuousTest):
         not PLATFORM_SUPPORTS_SYMM_MEM, "SymmMem is not supported on this ROCm arch"
     )
     @skip_if_lt_x_gpu(2)
+    @skip_if_rocm_ver_atleast_multiprocess([7, 14])
     @parametrize("reduce_op", ["sum", "avg"])
     @parametrize("symm_mem_input", [True, False])
     def test_low_contention_reduce_scatter(
