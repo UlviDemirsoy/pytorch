@@ -2121,10 +2121,15 @@ test_torchtitan() {
   install_torchao
   install_torchcomms
 
+  # get_pinned_commit reads a path relative to the pytorch checkout, so resolve
+  # it before entering the clone.
+  local torchtitan_commit
+  torchtitan_commit=$(get_pinned_commit torchtitan)
+
   if [[ ! -d ./torchtitan ]]; then
     git clone --quiet https://github.com/pytorch/torchtitan.git
     pushd torchtitan
-    git checkout "$(get_pinned_commit torchtitan)"
+    git checkout "${torchtitan_commit}"
     popd
   fi
 
